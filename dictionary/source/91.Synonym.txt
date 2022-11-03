@@ -1,0 +1,4 @@
+실리콘,실케,케이스
+@삼성,samsung,SAMSUNG
+다나와,@danawa,DANAWA
+auction,옥션,@이베이

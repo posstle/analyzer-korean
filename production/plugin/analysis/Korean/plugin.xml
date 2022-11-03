@@ -1,0 +1,27 @@
+<plugin id="Korean" namespace="Analysis" class="org.fastcatsearch.plugin.analysis.ko.KoreanAnalysisPlugin">
+	<name>한국어분석기</name>
+	<version>1.0</version>
+	
+	<description>한국어분석기 및 한국어분석사전을 제공한다.</description>
+	
+	<use-db>true</use-db>
+	
+	<dictionary-list>
+		<dictionary id="system" name="기초사전" type="SYSTEM" ignoreCase="true"></dictionary>
+		<dictionary id="user" name="사용자사전" type="SET" tokenType="MAX" ignoreCase="true">
+			<column name="keyword" type="varchar(100) not null unique" searchable="true" key="true" compilable="true"/>
+		</dictionary>
+		<dictionary id="synonym" name="유사어사전" type="SYNONYM" tokenType="MID" ignoreCase="true">
+			<column name="keyword" type="varchar(100)" searchable="true" key="true" nullableUnique="true" compilable="true"/>
+			<column name="synonym" type="varchar(3000)" searchable="true" compilable="true"/>
+		</dictionary>
+		<dictionary id="stop" name="불용어사전" type="SET" tokenType="MAX" ignoreCase="true">
+			<column name="keyword" type="varchar(100) not null unique" searchable="true" key="true" compilable="true"/>
+		</dictionary>
+	</dictionary-list>
+	
+	<action-list>
+		<action className="org.fastcatsearch.plugin.analysis.ko.standard.action.GetSynonymListAction" />
+		<action className="org.fastcatsearch.plugin.analysis.ko.standard.action.GetAnalyzedResult" />
+	</action-list>
+</plugin>
